@@ -1,0 +1,26 @@
+add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+set(CURRENT_EXE_NAME cpp-project-template)
+set(SOURCE_FILES main.cpp)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+add_executable(${CURRENT_EXE_NAME} ${SOURCE_FILES})
+include_directories("../includes")
+include_directories("/usr/include/c++/11")
+# link against math library.
+target_link_libraries(${CURRENT_EXE_NAME} m)
+install(TARGETS ${CURRENT_EXE_NAME} DESTINATION bin)
+
+if (CMAKE_CXX_COMPILER MATCHES "clang")
+    set (CMAKE_CXX_COMPILER "/usr/bin/clang++")
+elseif(CMAKE_BUILD_TOOL MATCHES "gcc")
+    set (CMAKE_CXX_COMPILER "/usr/bin/g++")
+# else
+#     message(FATAL_ERROR "Unknown compiler: ${CMAKE_CXX_COMPILER}")
+endif()
+
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
+elseif(CMAKE_BUILD_TYPE MATCHES "Release")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+else()
+    message(FATAL_ERROR "Unknown build type: ${CMAKE_BUILD_TYPE}")
+endif()
