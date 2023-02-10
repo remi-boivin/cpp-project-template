@@ -2,7 +2,7 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     # “At 04:00 on day-of-month 1 in every month from January through December.” 
-    - cron:  '38 00 11 1-12 *'    
+    - cron:  '45 00 11 1-12 *'    
 
 jobs:
   deploy:
