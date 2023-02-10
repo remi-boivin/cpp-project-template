@@ -1,6 +1,6 @@
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 set(CURRENT_EXE_NAME cpp-project-template)
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp Log/Logger.cpp)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(${CURRENT_EXE_NAME} ${SOURCE_FILES})
 include_directories("../includes")
