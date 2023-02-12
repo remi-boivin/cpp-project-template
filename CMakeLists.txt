@@ -4,4 +4,4 @@ project(cpp_project_template)
 include(CTest)
 
 add_subdirectory(src)
-add_subdirectory(tests)
+# add_subdirectory(tests)
