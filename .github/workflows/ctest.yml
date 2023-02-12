@@ -1,5 +1,9 @@
 name: ctest
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
 on:
   push:
     branches: [ develop ]
@@ -8,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.os }} - ${{ matrix.generator }}
+    name: ctest
     strategy:
       matrix:
         os: [
@@ -35,3 +39,17 @@ jobs:
     - name: run tests
       working-directory: ${{github.workspace}}/build
       run: make && ctest --output-on-failure --rerun-failed
+
+    - name: check if Build succeed
+      if: ${{ success() }}
+      uses: joelwmale/webhook-action@master
+      with:
+        url: https://discord.com/api/webhooks/1074252993572122665/d0KOhEZp-pVEgLedAfy7h2kBoTrnKmCcFlbVC_EEdlUfRT7QD0A4bkuCY7RHiZ5xF0tT
+        body: '{"content": "job success", "embeds": [{"title": "github action", "description": "**Message**\nThe [job ${{ github.job }}](${{ github.repository }}/actions/runs/${{ github.job }}) succeded", "color": 9291330, "author": {"name": "${{ github.actor }}"}, "icon_url": "https://ennorath.org/wp-content/uploads/2020/03/mail.png"}]}'
+
+    - name: check if Build failed
+      if: ${{ failure() }}
+      uses: joelwmale/webhook-action@master
+      with:
+        url: https://discord.com/api/webhooks/1074252993572122665/d0KOhEZp-pVEgLedAfy7h2kBoTrnKmCcFlbVC_EEdlUfRT7QD0A4bkuCY7RHiZ5xF0tT
+        body: '{"content": "job failled", "embeds": [{"title": "github action", "description": "**Message**\nThe [job ${{ github.job }}](${{ github.repository }}/actions/runs/${{ github.job }}) has failled", "color": 14177041, "author": {"name": "${{ github.actor }}"}, "icon_url": "https://ennorath.org/wp-content/uploads/2020/03/mail.png"}]}'
