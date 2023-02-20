@@ -3,12 +3,13 @@ cmake_minimum_required(VERSION 3.15)
 project(date VERSION 1.0.0)
 
 add_library(date STATIC
-    Date.cpp
+    src/Date.cpp
+    # pal_bridge/palfactory.cpp
 )
 
+
 # Set the include directories
-target_include_directories(date PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+target_include_directories(date PUBLIC 
 )
 
 # Set any additional compiler flags you need for your library

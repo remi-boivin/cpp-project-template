@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 namespace cp
 {
     namespace iparser
@@ -11,7 +12,7 @@ namespace cp
         class IParser
         {
         public:
-            virtual void args(int argc, char **argv, int &verbose) const = 0;
+            virtual void args(int argc, char **argv) const = 0;
             virtual std::vector<std::string> get() const = 0;
         };
     }

@@ -9,8 +9,9 @@ add_compile_options(-Wall -Wextra -pedantic -Werror -Wconversion -std=c++17 -Wsh
 add_executable(${CURRENT_EXE_NAME} ${SOURCE_FILES})
 add_dependencies(${CURRENT_EXE_NAME} cpputest)
 target_include_directories(${CURRENT_EXE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src)
-target_link_libraries(${CURRENT_EXE_NAME} CppUTest CppUTestExt logger date)
-include_directories("../../includes")
+
+target_link_libraries(${CURRENT_EXE_NAME} CppUTest CppUTestExt date logger)
+include_directories("../../src/Log/lal_bridge")
 include_directories("../includes")
 
 # Enable code coverage

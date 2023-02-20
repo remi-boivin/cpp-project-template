@@ -1,6 +1,6 @@
 add_compile_options(-Wall -Wextra -pedantic -Werror -Wconversion -std=c++17 -Wshadow)
 set(CURRENT_EXE_NAME cpp-project-template)
-set(SOURCE_FILES main.cpp args.cpp Parser/pal_bridge/palfactory.cpp)
+set(SOURCE_FILES main.cpp)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories("../includes")
 include_directories("include")
@@ -10,6 +10,8 @@ include_directories("../lib/include")
 add_executable(${CURRENT_EXE_NAME} ${SOURCE_FILES})
 include_directories("/usr/include/c++/11")
 
+# include logger library
+add_subdirectory(Date/)
 # include logger library
 add_subdirectory(Log/)
 

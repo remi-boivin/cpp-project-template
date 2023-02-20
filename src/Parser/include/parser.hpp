@@ -5,7 +5,7 @@
 #include <cstring>
 #include <vector>
 #include <array.hpp>
-#include <iparser.hpp>
+#include "../../pal/iparser.hpp"
 
 class Parser : public cp::iparser::IParser
 {
@@ -13,7 +13,7 @@ class Parser : public cp::iparser::IParser
 public:
     Parser(const std::vector<std::string> autorizedArgs);
     Parser();
-    void args(int argc, char **argv, int &verbose) const override;
+    void args(int argc, char **argv) const override;
     std::vector<std::string> get() const override;
 
 private:

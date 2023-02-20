@@ -1,5 +1,5 @@
-#include <palfactory.hpp>
-#include <parser.hpp>
+#include "./palfactory.hpp"
+#include "../include/parser.hpp"
 
 namespace cp
 {
