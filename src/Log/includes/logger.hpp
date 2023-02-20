@@ -16,8 +16,6 @@ public:
     Logger(LogSeverity logLevel);
 
     void log(const std::string& message, LogSeverity severity);
-    void set(LogSeverity logLevel);
-    LogSeverity get();
 
 private:
     LogSeverity m_logLevel;
