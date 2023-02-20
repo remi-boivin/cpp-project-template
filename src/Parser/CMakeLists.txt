@@ -4,18 +4,27 @@ project(parser VERSION 1.0.0)
 
 add_library(parser STATIC
     Parser.cpp
+    pal_bridge/palfactory.cpp
 )
 
-# add the path to the external libraries
-link_directories(../lib/build)
-find_library(COMMON_LIB libcommon.a PATHS ../lib/build)
+execute_process(COMMAND cmake -B bin -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+                WORKING_DIRECTORY ./lib/)
 
-# check if the library was found
+execute_process(COMMAND make
+WORKING_DIRECTORY ./lib/bin)
+
+# add the path to the external libraries
+link_directories(../../lib/bin)
+find_library(COMMON_LIB libcommon.a PATHS ../../lib/bin)
+
+#check if the library was found
 if (NOT COMMON_LIB)
     message(FATAL_ERROR "Could not find common library")
 endif()
 
-target_link_libraries(parser common)
+target_link_libraries(parser ${COMMON_LIB})
+# target_link_libraries(parser common)
+
 # Set the include directories
 target_include_directories(parser PUBLIC 
 ${CMAKE_CURRENT_SOURCE_DIR}/include

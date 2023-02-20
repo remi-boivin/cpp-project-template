@@ -5,13 +5,23 @@ set(SOURCE_FILES
     ParserTest.cpp
     )
 
+# add the path to the external libraries
+link_directories(../../lib/build)
+find_library(COMMON_LIB libcommon.a PATHS ../../lib/build)
+
+# check if the library was found
+# if (NOT COMMON_LIB)
+#     message(FATAL_ERROR "Could not find common library")
+# endif()
+
+
 add_compile_options(-Wall -Wextra -pedantic -Werror -Wconversion -Wshadow -g -ggdb -o0)
 # add_compile_options(-Wall -Wextra -pedantic -Werror -Wconversion -std=c++17 -Wshadow -g -ggdb -o0)
 add_executable(${CURRENT_EXE_NAME} ${SOURCE_FILES})
 add_dependencies(${CURRENT_EXE_NAME} cpputest)
 target_include_directories(${CURRENT_EXE_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src)
-target_link_libraries(${CURRENT_EXE_NAME} CppUTest CppUTestExt parser )
-include_directories("../../src/Parser/include")
+target_link_libraries(${CURRENT_EXE_NAME} CppUTest CppUTestExt parser ${COMMON_LIB})
+include_directories("../../src/Parser/pal_bridge")
 include_directories("include")
 
 # Enable code coverage

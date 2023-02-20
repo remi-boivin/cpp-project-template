@@ -1,17 +1,17 @@
-#ifndef IFACTORY_HPP
-#define IFACTORY_HPP
+#ifndef LAL_IFACTORY_HPP
+#define LAL_IFACTORY_HPP
 
 #include <memory>
-#include "./iparser.hpp"
+#include "./ilogger.hpp"
 
 namespace cp
 {
-    namespace iparser
+    namespace lal
     {
         class IFactory
         {
         public:
-            virtual std::shared_ptr<IParser> createParser(std::vector<std::string> authorizedArgs) const = 0;
+            virtual std::shared_ptr<ILogger> createLogger(ILogger::LogSeverity logLevel) const = 0;
 
         protected:
             template <typename Abstract, typename Concrete, typename... Args>
@@ -29,4 +29,4 @@ namespace cp
     }
 }
 
-#endif // IFACTORY_HPP
+#endif // LAL_IFACTORY_HPP

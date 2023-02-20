@@ -2,7 +2,7 @@
 #define PARSER_PALFACTORY
 
 #include <memory>
-#include <pal/ifactory.hpp>
+#include "../../pal/ifactory.hpp"
 
 namespace cp
 {

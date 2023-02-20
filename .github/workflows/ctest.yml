@@ -40,7 +40,9 @@ jobs:
 
     - name: run tests
       working-directory: ${{github.workspace}}/build
-      run: make && ctest --output-on-failure --rerun-failed
+      run: |
+        make
+        ctest --output-on-failure --rerun-failed
 
     - name: check if Build succeed
       if: ${{ success() }}
