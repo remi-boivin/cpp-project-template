@@ -14,7 +14,7 @@ target_include_directories(logger PUBLIC
 # Link the date library with logger
 target_link_libraries(logger date)
 
-target_include_directories(logger PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../Date/include)
+target_include_directories(logger PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../date/include)
 
 # Set any additional compiler flags you need for your library
 target_compile_options(logger PRIVATE

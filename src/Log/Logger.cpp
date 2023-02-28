@@ -1,5 +1,4 @@
 #include "./include/logger.hpp"
-#include "../Date/include/date.hpp"
 
 Logger::Logger(cp::lal::ILogger::LogSeverity logLevel)
     : m_logLevel(logLevel)

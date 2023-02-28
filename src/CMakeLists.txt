@@ -11,7 +11,7 @@ add_executable(${CURRENT_EXE_NAME} ${SOURCE_FILES})
 include_directories("/usr/include/c++/11")
 
 # include logger library
-add_subdirectory(Date/)
+add_subdirectory(date/)
 # include logger library
 add_subdirectory(Log/)
 
